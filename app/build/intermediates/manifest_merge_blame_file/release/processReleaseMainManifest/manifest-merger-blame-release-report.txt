@@ -1,0 +1,269 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.ammu.social"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:4:5-67
+11-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:4:22-64
+12
+13    <queries>
+13-->[com.facebook.android:facebook-common:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/6ba6bf250a03a652c9371869a413923b/transformed/jetified-facebook-common-16.3.0/AndroidManifest.xml:17:5-19:15
+14        <package android:name="com.facebook.katana" />
+14-->[com.facebook.android:facebook-common:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/6ba6bf250a03a652c9371869a413923b/transformed/jetified-facebook-common-16.3.0/AndroidManifest.xml:18:9-55
+14-->[com.facebook.android:facebook-common:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/6ba6bf250a03a652c9371869a413923b/transformed/jetified-facebook-common-16.3.0/AndroidManifest.xml:18:18-52
+15    </queries>
+16
+17    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+17-->[com.facebook.android:facebook-core:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/a23d8fe0b09f605a4f3f45d9936d6700/transformed/jetified-facebook-core-16.3.0/AndroidManifest.xml:16:5-79
+17-->[com.facebook.android:facebook-core:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/a23d8fe0b09f605a4f3f45d9936d6700/transformed/jetified-facebook-core-16.3.0/AndroidManifest.xml:16:22-76
+18
+19    <permission
+19-->[androidx.core:core:1.13.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/2c1ee7da16a8564c03eac913a940bf73/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+20        android:name="com.ammu.social.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+20-->[androidx.core:core:1.13.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/2c1ee7da16a8564c03eac913a940bf73/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
+21        android:protectionLevel="signature" />
+21-->[androidx.core:core:1.13.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/2c1ee7da16a8564c03eac913a940bf73/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
+22
+23    <uses-permission android:name="com.ammu.social.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+23-->[androidx.core:core:1.13.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/2c1ee7da16a8564c03eac913a940bf73/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+23-->[androidx.core:core:1.13.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/2c1ee7da16a8564c03eac913a940bf73/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
+24    <uses-permission android:name="moe.shizuku.manager.permission.API_V23" />
+24-->[dev.rikka.shizuku:provider:13.1.5] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/e7e28f43d3741446cb86a5cb95af41b0/transformed/jetified-provider-13.1.5/AndroidManifest.xml:8:5-78
+24-->[dev.rikka.shizuku:provider:13.1.5] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/e7e28f43d3741446cb86a5cb95af41b0/transformed/jetified-provider-13.1.5/AndroidManifest.xml:8:22-75
+25    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+25-->[com.android.installreferrer:installreferrer:1.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/8037f8ea9032fa39cf29267b1aaeb68e/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:9:5-110
+25-->[com.android.installreferrer:installreferrer:1.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/8037f8ea9032fa39cf29267b1aaeb68e/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:9:22-107
+26
+27    <application
+27-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:6:9-42:19
+28        android:allowBackup="true"
+28-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:7:9-35
+29        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+29-->[androidx.core:core:1.13.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/2c1ee7da16a8564c03eac913a940bf73/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
+30        android:extractNativeLibs="false"
+31        android:icon="@mipmap/ic_launcher"
+31-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:8:9-43
+32        android:label="@string/app_name"
+32-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:9:9-41
+33        android:roundIcon="@mipmap/ic_launcher_round"
+33-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:10:9-54
+34        android:supportsRtl="true"
+34-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:11:9-35
+35        android:theme="@style/Theme.TelegramAutomation" >
+35-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:12:9-56
+36
+37        <!-- Facebook SDK Meta-Data -->
+38        <meta-data
+38-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:15:9-107
+39            android:name="com.facebook.sdk.ApplicationId"
+39-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:15:20-65
+40            android:value="@string/facebook_app_id" />
+40-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:15:66-105
+41        <meta-data
+41-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:16:9-114
+42            android:name="com.facebook.sdk.ClientToken"
+42-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:16:20-63
+43            android:value="07448897cb55bb3b3346499c7da45c1e" />
+43-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:16:64-112
+44
+45        <activity
+45-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:18:9-25:20
+46            android:name="com.ammu.social.MainActivity"
+46-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:19:13-56
+47            android:exported="true" >
+47-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:20:13-36
+48            <intent-filter>
+48-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:21:13-24:29
+49                <action android:name="android.intent.action.MAIN" />
+49-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:22:17-69
+49-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:22:25-66
+50
+51                <category android:name="android.intent.category.LAUNCHER" />
+51-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:23:17-77
+51-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:23:27-74
+52            </intent-filter>
+53        </activity>
+54
+55        <!-- Facebook SDK Activity -->
+56        <activity
+56-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:28:9-30:48
+57            android:name="com.facebook.FacebookActivity"
+57-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:28:19-63
+58            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+58-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:29:13-96
+59            android:label="@string/app_name"
+59-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:30:13-45
+60            android:theme="@style/com_facebook_activity_theme" />
+60-->[com.facebook.android:facebook-common:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/6ba6bf250a03a652c9371869a413923b/transformed/jetified-facebook-common-16.3.0/AndroidManifest.xml:25:13-63
+61        <activity
+61-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:31:9-40:20
+62            android:name="com.facebook.CustomTabActivity"
+62-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:32:13-58
+63            android:exported="true" >
+63-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:33:13-36
+64            <intent-filter>
+64-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:34:13-39:29
+65                <action android:name="android.intent.action.VIEW" />
+65-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:35:17-69
+65-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:35:25-66
+66
+67                <category android:name="android.intent.category.DEFAULT" />
+67-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:36:17-76
+67-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:36:27-73
+68                <category android:name="android.intent.category.BROWSABLE" />
+68-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:37:17-78
+68-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:37:27-75
+69
+70                <data android:scheme="@string/fb_login_protocol_scheme" />
+70-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:38:17-75
+70-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:38:23-72
+71            </intent-filter>
+72            <intent-filter>
+72-->[com.facebook.android:facebook-common:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/6ba6bf250a03a652c9371869a413923b/transformed/jetified-facebook-common-16.3.0/AndroidManifest.xml:31:13-40:29
+73                <action android:name="android.intent.action.VIEW" />
+73-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:35:17-69
+73-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:35:25-66
+74
+75                <category android:name="android.intent.category.DEFAULT" />
+75-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:36:17-76
+75-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:36:27-73
+76                <category android:name="android.intent.category.BROWSABLE" />
+76-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:37:17-78
+76-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:37:27-75
+77
+78                <data
+78-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:38:17-75
+79                    android:host="cct.com.ammu.social"
+80                    android:scheme="fbconnect" />
+80-->/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:38:23-72
+81            </intent-filter>
+82        </activity>
+83        <activity android:name="com.facebook.CustomTabMainActivity" />
+83-->[com.facebook.android:facebook-common:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/6ba6bf250a03a652c9371869a413923b/transformed/jetified-facebook-common-16.3.0/AndroidManifest.xml:26:9-71
+83-->[com.facebook.android:facebook-common:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/6ba6bf250a03a652c9371869a413923b/transformed/jetified-facebook-common-16.3.0/AndroidManifest.xml:26:19-68
+84        <!--
+85         The initialization ContentProvider will call FacebookSdk.sdkInitialize automatically
+86         with the application context. This config is merged in with the host app's manifest,
+87         but there can only be one provider with the same authority activated at any given
+88         point; so if the end user has two or more different apps that use Facebook SDK, only the
+89         first one will be able to use the provider. To work around this problem, we use the
+90         following placeholder in the authority to identify each host application as if it was
+91         a completely different provider.
+92        -->
+93        <provider
+93-->[com.facebook.android:facebook-core:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/a23d8fe0b09f605a4f3f45d9936d6700/transformed/jetified-facebook-core-16.3.0/AndroidManifest.xml:29:9-32:40
+94            android:name="com.facebook.internal.FacebookInitProvider"
+94-->[com.facebook.android:facebook-core:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/a23d8fe0b09f605a4f3f45d9936d6700/transformed/jetified-facebook-core-16.3.0/AndroidManifest.xml:30:13-70
+95            android:authorities="com.ammu.social.FacebookInitProvider"
+95-->[com.facebook.android:facebook-core:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/a23d8fe0b09f605a4f3f45d9936d6700/transformed/jetified-facebook-core-16.3.0/AndroidManifest.xml:31:13-72
+96            android:exported="false" />
+96-->[com.facebook.android:facebook-core:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/a23d8fe0b09f605a4f3f45d9936d6700/transformed/jetified-facebook-core-16.3.0/AndroidManifest.xml:32:13-37
+97
+98        <receiver
+98-->[com.facebook.android:facebook-core:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/a23d8fe0b09f605a4f3f45d9936d6700/transformed/jetified-facebook-core-16.3.0/AndroidManifest.xml:34:9-40:20
+99            android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver"
+99-->[com.facebook.android:facebook-core:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/a23d8fe0b09f605a4f3f45d9936d6700/transformed/jetified-facebook-core-16.3.0/AndroidManifest.xml:35:13-86
+100            android:exported="false" >
+100-->[com.facebook.android:facebook-core:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/a23d8fe0b09f605a4f3f45d9936d6700/transformed/jetified-facebook-core-16.3.0/AndroidManifest.xml:36:13-37
+101            <intent-filter>
+101-->[com.facebook.android:facebook-core:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/a23d8fe0b09f605a4f3f45d9936d6700/transformed/jetified-facebook-core-16.3.0/AndroidManifest.xml:37:13-39:29
+102                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
+102-->[com.facebook.android:facebook-core:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/a23d8fe0b09f605a4f3f45d9936d6700/transformed/jetified-facebook-core-16.3.0/AndroidManifest.xml:38:17-95
+102-->[com.facebook.android:facebook-core:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/a23d8fe0b09f605a4f3f45d9936d6700/transformed/jetified-facebook-core-16.3.0/AndroidManifest.xml:38:25-92
+103            </intent-filter>
+104        </receiver>
+105        <receiver
+105-->[com.facebook.android:facebook-core:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/a23d8fe0b09f605a4f3f45d9936d6700/transformed/jetified-facebook-core-16.3.0/AndroidManifest.xml:41:9-47:20
+106            android:name="com.facebook.AuthenticationTokenManager$CurrentAuthenticationTokenChangedBroadcastReceiver"
+106-->[com.facebook.android:facebook-core:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/a23d8fe0b09f605a4f3f45d9936d6700/transformed/jetified-facebook-core-16.3.0/AndroidManifest.xml:42:13-118
+107            android:exported="false" >
+107-->[com.facebook.android:facebook-core:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/a23d8fe0b09f605a4f3f45d9936d6700/transformed/jetified-facebook-core-16.3.0/AndroidManifest.xml:43:13-37
+108            <intent-filter>
+108-->[com.facebook.android:facebook-core:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/a23d8fe0b09f605a4f3f45d9936d6700/transformed/jetified-facebook-core-16.3.0/AndroidManifest.xml:44:13-46:29
+109                <action android:name="com.facebook.sdk.ACTION_CURRENT_AUTHENTICATION_TOKEN_CHANGED" />
+109-->[com.facebook.android:facebook-core:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/a23d8fe0b09f605a4f3f45d9936d6700/transformed/jetified-facebook-core-16.3.0/AndroidManifest.xml:45:17-103
+109-->[com.facebook.android:facebook-core:16.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/a23d8fe0b09f605a4f3f45d9936d6700/transformed/jetified-facebook-core-16.3.0/AndroidManifest.xml:45:25-100
+110            </intent-filter>
+111        </receiver>
+112
+113        <provider
+113-->[androidx.emoji2:emoji2:1.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/de7a8a1243f2a60987fdca96dbf13a75/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+114            android:name="androidx.startup.InitializationProvider"
+114-->[androidx.emoji2:emoji2:1.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/de7a8a1243f2a60987fdca96dbf13a75/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:25:13-67
+115            android:authorities="com.ammu.social.androidx-startup"
+115-->[androidx.emoji2:emoji2:1.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/de7a8a1243f2a60987fdca96dbf13a75/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:26:13-68
+116            android:exported="false" >
+116-->[androidx.emoji2:emoji2:1.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/de7a8a1243f2a60987fdca96dbf13a75/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:27:13-37
+117            <meta-data
+117-->[androidx.emoji2:emoji2:1.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/de7a8a1243f2a60987fdca96dbf13a75/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+118                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+118-->[androidx.emoji2:emoji2:1.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/de7a8a1243f2a60987fdca96dbf13a75/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:30:17-75
+119                android:value="androidx.startup" />
+119-->[androidx.emoji2:emoji2:1.3.0] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/de7a8a1243f2a60987fdca96dbf13a75/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:31:17-49
+120            <meta-data
+120-->[androidx.lifecycle:lifecycle-process:2.8.2] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/1b8d697bf7bb4c2f27e73d1141e3c55c/transformed/jetified-lifecycle-process-2.8.2/AndroidManifest.xml:29:13-31:52
+121                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+121-->[androidx.lifecycle:lifecycle-process:2.8.2] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/1b8d697bf7bb4c2f27e73d1141e3c55c/transformed/jetified-lifecycle-process-2.8.2/AndroidManifest.xml:30:17-78
+122                android:value="androidx.startup" />
+122-->[androidx.lifecycle:lifecycle-process:2.8.2] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/1b8d697bf7bb4c2f27e73d1141e3c55c/transformed/jetified-lifecycle-process-2.8.2/AndroidManifest.xml:31:17-49
+123            <meta-data
+123-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/52d8912095cc3dc5eb3e276b6343e272/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+124                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+124-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/52d8912095cc3dc5eb3e276b6343e272/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+125                android:value="androidx.startup" />
+125-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/52d8912095cc3dc5eb3e276b6343e272/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+126        </provider>
+127
+128        <receiver
+128-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/52d8912095cc3dc5eb3e276b6343e272/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+129            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+129-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/52d8912095cc3dc5eb3e276b6343e272/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+130            android:directBootAware="false"
+130-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/52d8912095cc3dc5eb3e276b6343e272/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+131            android:enabled="true"
+131-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/52d8912095cc3dc5eb3e276b6343e272/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+132            android:exported="true"
+132-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/52d8912095cc3dc5eb3e276b6343e272/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+133            android:permission="android.permission.DUMP" >
+133-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/52d8912095cc3dc5eb3e276b6343e272/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+134            <intent-filter>
+134-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/52d8912095cc3dc5eb3e276b6343e272/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+135                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+135-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/52d8912095cc3dc5eb3e276b6343e272/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+135-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/52d8912095cc3dc5eb3e276b6343e272/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+136            </intent-filter>
+137            <intent-filter>
+137-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/52d8912095cc3dc5eb3e276b6343e272/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+138                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+138-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/52d8912095cc3dc5eb3e276b6343e272/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+138-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/52d8912095cc3dc5eb3e276b6343e272/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+139            </intent-filter>
+140            <intent-filter>
+140-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/52d8912095cc3dc5eb3e276b6343e272/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+141                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+141-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/52d8912095cc3dc5eb3e276b6343e272/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+141-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/52d8912095cc3dc5eb3e276b6343e272/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+142            </intent-filter>
+143            <intent-filter>
+143-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/52d8912095cc3dc5eb3e276b6343e272/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+144                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+144-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/52d8912095cc3dc5eb3e276b6343e272/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+144-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/52d8912095cc3dc5eb3e276b6343e272/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+145            </intent-filter>
+146        </receiver>
+147
+148        <meta-data
+148-->[dev.rikka.shizuku:provider:13.1.5] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/e7e28f43d3741446cb86a5cb95af41b0/transformed/jetified-provider-13.1.5/AndroidManifest.xml:11:9-13:36
+149            android:name="moe.shizuku.client.V3_SUPPORT"
+149-->[dev.rikka.shizuku:provider:13.1.5] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/e7e28f43d3741446cb86a5cb95af41b0/transformed/jetified-provider-13.1.5/AndroidManifest.xml:12:13-57
+150            android:value="true" />
+150-->[dev.rikka.shizuku:provider:13.1.5] /data/data/com.termux/files/home/.gradle/caches/8.13/transforms/e7e28f43d3741446cb86a5cb95af41b0/transformed/jetified-provider-13.1.5/AndroidManifest.xml:13:13-33
+151    </application>
+152
+153</manifest>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.12.1" type="partial_results">
+    <map id="UnsafeIntentLaunch">
+            <map id="unprotected">
+                <entry
+                    name="com.ammu.social.MainActivity"
+                    boolean="true"/>
+                <entry
+                    name="com.facebook.CustomTabActivity"
+                    boolean="true"/>
+            </map>
+    </map>
+    <map id="UnusedResources">
+        <location id="R.color.black"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/colors.xml"
+            line="6"
+            column="12"
+            startOffset="201"
+            endLine="6"
+            endColumn="24"
+            endOffset="213"/>
+        <location id="R.color.purple_200"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/colors.xml"
+            line="3"
+            column="12"
+            startOffset="62"
+            endLine="3"
+            endColumn="29"
+            endOffset="79"/>
+        <location id="R.color.purple_700"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/colors.xml"
+            line="4"
+            column="12"
+            startOffset="109"
+            endLine="4"
+            endColumn="29"
+            endOffset="126"/>
+        <location id="R.color.teal_200"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/colors.xml"
+            line="5"
+            column="12"
+            startOffset="156"
+            endLine="5"
+            endColumn="27"
+            endOffset="171"/>
+        <location id="R.color.white"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/colors.xml"
+            line="7"
+            column="12"
+            startOffset="243"
+            endLine="7"
+            endColumn="24"
+            endOffset="255"/>
+        <location id="R.drawable.ic_launcher_foreground"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable-v26/ic_launcher_foreground.xml"
+            line="2"
+            column="1"
+            startOffset="39"
+            endLine="5"
+            endColumn="17"
+            endOffset="265"/>
+        <location id="R.string.accessibility_service_description"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/strings.xml"
+            line="3"
+            column="13"
+            startOffset="66"
+            endLine="3"
+            endColumn="53"
+            endOffset="106"/>
+        <entry
+            name="model"
+            string="attr[colorPrimaryVariant(R),isLightTheme(R)],color[ic_launcher_background(U),purple_200(D),purple_700(D),teal_200(D),black(D),white(D)],drawable[ic_launcher_foreground(D)],mipmap[ic_launcher(U),ic_launcher_round(U),ic_launcher_foreground(U)],string[app_name(U),facebook_app_id(U),fb_login_protocol_scheme(U),accessibility_service_description(D)],style[Theme_TelegramAutomation(U),Theme_Material3_DayNight_NoActionBar(R)];8^2^b,9^2^b,a^2^b,10^11^0^1;;;"/>
+    </map>
+
+</incidents>

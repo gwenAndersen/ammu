@@ -1,0 +1,17 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color ic_launcher_background
+color purple_200
+color purple_700
+color teal_200
+color white
+drawable ic_launcher_foreground
+mipmap ic_launcher
+mipmap ic_launcher_foreground
+mipmap ic_launcher_round
+string accessibility_service_description
+string app_name
+string facebook_app_id
+string fb_login_protocol_scheme
+style Theme.TelegramAutomation

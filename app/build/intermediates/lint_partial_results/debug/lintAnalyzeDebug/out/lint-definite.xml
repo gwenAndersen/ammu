@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.12.1" type="incidents">
+
+    <incident
+        id="OldTargetApi"
+        severity="warning"
+        message="Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details.">
+        <fix-replace
+            description="Update targetSdkVersion to 36"
+            oldString="34"
+            replacement="36"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="15"
+            column="9"
+            startOffset="343"
+            endLine="15"
+            endColumn="21"
+            endOffset="355"/>
+    </incident>
+
+    <incident
+        id="RedundantLabel"
+        severity="warning"
+        message="Redundant label can be removed">
+        <fix-attribute
+            description="Delete label"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="label"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="30"
+            column="13"
+            startOffset="1272"
+            endLine="30"
+            endColumn="45"
+            endOffset="1304"/>
+    </incident>
+
+    <incident
+        id="AndroidGradlePluginVersion"
+        severity="warning"
+        message="A newer version of Gradle than 8.13 is available: 8.14.3">
+        <fix-replace
+            description="Update to 8.14.3"
+            oldString="8.13"
+            replacement="8.14.3"
+            priority="0"/>
+        <location
+            file="$HOME/my_project/ammu/gradle/wrapper/gradle-wrapper.properties"
+            line="3"
+            column="17"
+            startOffset="81"
+            endLine="3"
+            endColumn="79"
+            endOffset="143"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of `compileSdkVersion` than 34 is available: 36">
+        <fix-replace
+            description="Set compileSdkVersion to 36"
+            oldString="34"
+            replacement="36"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="10"
+            column="5"
+            startOffset="242"
+            endLine="10"
+            endColumn="18"
+            endOffset="255"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.core:core-ktx than 1.13.1 is available: 1.17.0">
+        <fix-replace
+            description="Change to 1.17.0"
+            family="Update versions"
+            oldString="1.13.1"
+            replacement="1.17.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="51"
+            column="20"
+            startOffset="1178"
+            endLine="51"
+            endColumn="51"
+            endOffset="1209"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.activity:activity-compose than 1.9.0 is available: 1.11.0">
+        <fix-replace
+            description="Change to 1.11.0"
+            family="Update versions"
+            oldString="1.9.0"
+            replacement="1.11.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="52"
+            column="20"
+            startOffset="1229"
+            endLine="52"
+            endColumn="62"
+            endOffset="1271"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.compose:compose-bom than 2024.05.00 is available: 2025.11.00">
+        <fix-replace
+            description="Change to 2025.11.00"
+            family="Update versions"
+            oldString="2024.05.00"
+            replacement="2025.11.00"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="53"
+            column="24"
+            startOffset="1295"
+            endLine="53"
+            endColumn="75"
+            endOffset="1346"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of com.google.android.material:material than 1.12.0 is available: 1.13.0">
+        <fix-replace
+            description="Change to 1.13.0"
+            family="Update versions"
+            oldString="1.12.0"
+            replacement="1.13.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="59"
+            column="20"
+            startOffset="1692"
+            endLine="59"
+            endColumn="65"
+            endOffset="1737"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.8.2 is available: 2.9.4">
+        <fix-replace
+            description="Change to 2.9.4"
+            family="Update versions"
+            oldString="2.8.2"
+            replacement="2.9.4"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="60"
+            column="20"
+            startOffset="1757"
+            endLine="60"
+            endColumn="68"
+            endOffset="1805"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.lifecycle:lifecycle-viewmodel-compose than 2.8.2 is available: 2.9.4">
+        <fix-replace
+            description="Change to 2.9.4"
+            family="Update versions"
+            oldString="2.8.2"
+            replacement="2.9.4"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="61"
+            column="20"
+            startOffset="1825"
+            endLine="61"
+            endColumn="74"
+            endOffset="1879"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.8.2 is available: 2.9.4">
+        <fix-replace
+            description="Change to 2.9.4"
+            family="Update versions"
+            oldString="2.8.2"
+            replacement="2.9.4"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="62"
+            column="20"
+            startOffset="1899"
+            endLine="62"
+            endColumn="70"
+            endOffset="1949"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.lifecycle:lifecycle-service than 2.8.2 is available: 2.9.4">
+        <fix-replace
+            description="Change to 2.9.4"
+            family="Update versions"
+            oldString="2.8.2"
+            replacement="2.9.4"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="63"
+            column="20"
+            startOffset="1969"
+            endLine="63"
+            endColumn="64"
+            endOffset="2013"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.savedstate:savedstate-ktx than 1.2.1 is available: 1.4.0">
+        <fix-replace
+            description="Change to 1.4.0"
+            family="Update versions"
+            oldString="1.2.1"
+            replacement="1.4.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="64"
+            column="20"
+            startOffset="2033"
+            endLine="64"
+            endColumn="62"
+            endOffset="2075"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.navigation:navigation-compose than 2.7.7 is available: 2.9.6">
+        <fix-replace
+            description="Change to 2.9.6"
+            family="Update versions"
+            oldString="2.7.7"
+            replacement="2.9.6"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="67"
+            column="20"
+            startOffset="2251"
+            endLine="67"
+            endColumn="66"
+            endOffset="2297"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of com.google.ai.client.generativeai:generativeai than 0.5.0 is available: 0.9.0">
+        <fix-replace
+            description="Change to 0.9.0"
+            family="Update versions"
+            oldString="0.5.0"
+            replacement="0.9.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="68"
+            column="20"
+            startOffset="2317"
+            endLine="68"
+            endColumn="74"
+            endOffset="2371"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.test.ext:junit than 1.1.5 is available: 1.3.0">
+        <fix-replace
+            description="Change to 1.3.0"
+            family="Update versions"
+            oldString="1.1.5"
+            replacement="1.3.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="72"
+            column="31"
+            startOffset="2574"
+            endLine="72"
+            endColumn="62"
+            endOffset="2605"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.test.espresso:espresso-core than 3.5.1 is available: 3.7.0">
+        <fix-replace
+            description="Change to 3.7.0"
+            family="Update versions"
+            oldString="3.5.1"
+            replacement="3.7.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="73"
+            column="31"
+            startOffset="2636"
+            endLine="73"
+            endColumn="75"
+            endOffset="2680"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.compose:compose-bom than 2023.08.00 is available: 2025.11.00">
+        <fix-replace
+            description="Change to 2025.11.00"
+            family="Update versions"
+            oldString="2023.08.00"
+            replacement="2025.11.00"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="74"
+            column="31"
+            startOffset="2711"
+            endLine="74"
+            endColumn="82"
+            endOffset="2762"/>
+    </incident>
+
+    <incident
+        id="NewerVersionAvailable"
+        severity="warning"
+        message="A newer version of org.jetbrains.kotlin.plugin.serialization than 2.0.0 is available: 2.2.21">
+        <fix-replace
+            description="Change to 2.2.21"
+            family="Update versions"
+            oldString="2.0.0"
+            replacement="2.2.21"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="5"
+            column="60"
+            startOffset="185"
+            endLine="5"
+            endColumn="67"
+            endOffset="192"/>
+    </incident>
+
+    <incident
+        id="NewerVersionAvailable"
+        severity="warning"
+        message="A newer version of org.jetbrains.kotlinx:kotlinx-serialization-json than 1.6.0 is available: 1.9.0">
+        <fix-replace
+            description="Change to 1.9.0"
+            family="Update versions"
+            oldString="1.6.0"
+            replacement="1.9.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="66"
+            column="20"
+            startOffset="2175"
+            endLine="66"
+            endColumn="76"
+            endOffset="2231"/>
+    </incident>
+
+    <incident
+        id="NewerVersionAvailable"
+        severity="warning"
+        message="A newer version of com.squareup.okhttp3:okhttp than 4.12.0 is available: 5.3.0">
+        <fix-replace
+            description="Change to 5.3.0"
+            family="Update versions"
+            oldString="4.12.0"
+            replacement="5.3.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="69"
+            column="20"
+            startOffset="2391"
+            endLine="69"
+            endColumn="56"
+            endOffset="2427"/>
+    </incident>
+
+    <incident
+        id="NewerVersionAvailable"
+        severity="warning"
+        message="A newer version of com.facebook.android:facebook-android-sdk than [16,17) is available: 18.1.3">
+        <fix-replace
+            description="Change to 18.1.3"
+            family="Update versions"
+            oldString="[16,17)"
+            replacement="18.1.3"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="70"
+            column="20"
+            startOffset="2448"
+            endLine="70"
+            endColumn="71"
+            endOffset="2499"/>
+    </incident>
+
+    <incident
+        id="NewerVersionAvailable"
+        severity="warning"
+        message="A newer version of com.google.accompanist:accompanist-webview than 0.34.0 is available: 0.36.0">
+        <fix-replace
+            description="Change to 0.36.0"
+            family="Update versions"
+            oldString="0.34.0"
+            replacement="0.36.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="82"
+            column="20"
+            startOffset="3130"
+            endLine="82"
+            endColumn="71"
+            endOffset="3181"/>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="This folder configuration (`v26`) is unnecessary; `minSdkVersion` is 26. Merge all the resources in this folder into `drawable`.">
+        <fix-data file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable-v26" folderName="drawable" requiresApi="26"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable-v26"/>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="This folder configuration (`v26`) is unnecessary; `minSdkVersion` is 26. Merge all the resources in this folder into `mipmap-anydpi`.">
+        <fix-data file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/mipmap-anydpi-v26" folderName="mipmap-anydpi" requiresApi="26"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/mipmap-anydpi-v26"/>
+    </incident>
+
+    <incident
+        id="MonochromeLauncherIcon"
+        severity="warning"
+        message="The application adaptive icon is missing a monochrome tag">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/mipmap-anydpi-v26/ic_launcher.xml"
+            line="2"
+            column="1"
+            startOffset="39"
+            endLine="5"
+            endColumn="17"
+            endOffset="265"/>
+    </incident>
+
+    <incident
+        id="MonochromeLauncherIcon"
+        severity="warning"
+        message="The application adaptive roundIcon is missing a monochrome tag">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/mipmap-anydpi-v26/ic_launcher_round.xml"
+            line="2"
+            column="1"
+            startOffset="39"
+            endLine="5"
+            endColumn="17"
+            endOffset="265"/>
+    </incident>
+
+    <incident
+        id="UseKtx"
+        severity="warning"
+        message="Use the KTX extension function `SharedPreferences.edit` instead?">
+        <fix-composite
+            description="Replace with the edit extension function"
+            family="Replace with the edit extension function"
+            robot="true"
+            independent="true">
+            <fix-replace
+                description="Replace with edit"
+                robot="true"
+                independent="true"
+                oldString="edit("
+                replacement="edit"
+                reformat="value"
+                imports="androidx.core.content.edit"
+                priority="0">
+                <range
+                    file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/ammu/social/utils/TokenManager.kt"
+                    startOffset="1483"
+                    endOffset="1488"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with  {"
+                robot="true"
+                independent="true"
+                oldString=")"
+                replacement=" {"
+                priority="0">
+                <range
+                    file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/ammu/social/utils/TokenManager.kt"
+                    startOffset="1488"
+                    endOffset="1489"/>
+            </fix-replace>
+            <fix-replace
+                description="Delete &quot;.&quot;"
+                robot="true"
+                independent="true"
+                oldString="."
+                replacement=""
+                priority="0">
+                <range
+                    file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/ammu/social/utils/TokenManager.kt"
+                    startOffset="1502"
+                    endOffset="1503"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with }"
+                robot="true"
+                independent="true"
+                oldString=".apply()"
+                replacement="}"
+                priority="0">
+                <range
+                    file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/ammu/social/utils/TokenManager.kt"
+                    startOffset="1578"
+                    endOffset="1586"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with     "
+                robot="true"
+                independent="true"
+                oldString=""
+                replacement="    "
+                priority="0">
+                <range
+                    file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/ammu/social/utils/TokenManager.kt"
+                    startOffset="1490"
+                    endOffset="1490"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with     "
+                robot="true"
+                independent="true"
+                oldString=""
+                replacement="    "
+                priority="0">
+                <range
+                    file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/ammu/social/utils/TokenManager.kt"
+                    startOffset="1523"
+                    endOffset="1523"/>
+            </fix-replace>
+        </fix-composite>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/ammu/social/utils/TokenManager.kt"
+            line="39"
+            column="9"
+            startOffset="1465"
+            endLine="39"
+            endColumn="33"
+            endOffset="1489"/>
+    </incident>
+
+</incidents>

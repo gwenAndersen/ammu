@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "com.ammu.social.app-debug-73:/mipmap-anydpi-v26_ic_launcher_foreground.xml.flat",
+        "source": "com.ammu.social.app-main-75:/mipmap-anydpi-v26/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.ammu.social.app-debug-73:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.ammu.social.app-main-75:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.ammu.social.app-debug-73:/drawable-v26_ic_launcher_foreground.xml.flat",
+        "source": "com.ammu.social.app-main-75:/drawable-v26/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.ammu.social.app-debug-73:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.ammu.social.app-main-75:/mipmap-anydpi-v26/ic_launcher.xml"
+    }
+]

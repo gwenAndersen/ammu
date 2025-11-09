@@ -1,0 +1,33 @@
+--------- beginning of main
+10-26 22:35:23.098   878   878 I BufferQueueProducer: [com.termux/com.termux.app.TermuxActivity#9011](this:0xb400007dbd7770f0,id:-1,api:0,p:-1,c:878) queueBuffer: fps=0.14 dur=6899.63 max=6899.63 min=6899.63
+10-26 22:35:23.110   878   878 I BufferQueueProducer: [VDS-MiFreeform@15753393 SINK](this:0xb400007cdd943e60,id:-1,api:1,p:878,c:878) queueBuffer: fps=0.14 dur=6896.78 max=6896.78 min=6896.78
+10-26 22:35:23.132   878   878 I BufferQueueProducer: [#6239](this:0xb400007dbd7ae9f0,id:-1,api:0,p:-1,c:878) queueBuffer: fps=0.14 dur=6899.70 max=6899.70 min=6899.70
+10-26 22:35:23.195   814  1459 I hwcomposer: [HWC] (0)fire a callback of refresh to SF[4]  
+10-26 22:35:23.216 27570 27570 W libc    : Access denied finding property "persist.vendor.track.malloc.enable"
+10-26 22:35:23.216 27570 27570 W libc    : Access denied finding property "persist.vendor.fd.monitor.enable"
+10-26 22:35:23.236  1599  1796 I MIUIInput: [MotionEvent] notifyMotion - eventTime=21718449405000, deviceId=3, source=0x1002, policyFlags=0x0, action=0x0, flags=0x0, downTime=21718449405000
+10-26 22:35:23.238  1599  1795 I MIUIInput: [MotionEvent] publisher action=0x0, deviceId=3, 21718449, channel '9cc1b0f eu.toneiv.ubktouch (server)'
+10-26 22:35:23.239  1599  1795 I MIUIInput: [MotionEvent] publisher action=0x0, deviceId=3, 21718449, channel '[Gesture Monitor] miui-gesture (server)'
+10-26 22:35:23.239   838   911 I libPowerHal: [perfLockAcq] idx:0 hdl:25746 hint:25 pid:838 tid:838 duration:120 lock_user:vendor.mediatek => ret_hdl:25746
+10-26 22:35:23.239   838   911 I libPowerHal: [setGPUFreq] MTKPOWER_HINT_APP_TOUCH user set gpu freq min:0, max:-1
+10-26 22:35:23.239   838   911 I libPowerHal: MTKPOWER_HINT_APP_TOUCH: set gpu opp level: 0
+10-26 22:35:23.240   838   911 I libPowerHal: MTKPOWER_HINT_APP_TOUCH: set gpu opp level max: 0
+10-26 22:35:23.240   838   911 I libPowerHal: [setGPUFreq] Soft min/max = (0, 0); Hard min/max = (31, 0)
+10-26 22:35:23.240   838   911 I libPowerHal: [setGPUFreq] final min/max = (0, 0)
+10-26 22:35:23.240   838   911 I libPowerHal: MTKPOWER_HINT_APP_TOUCH: set gpu opp level: 0
+10-26 22:35:23.240   838   911 I libPowerHal: MTKPOWER_HINT_APP_TOUCH: set gpu opp level max: 0
+10-26 22:35:23.241 31103 31103 I MIUIInput: [MotionEvent] ViewRootImpl windowName '', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=21718449, downTime=21718449, phoneEventTime=22:35:23.236 } moveCount:0
+10-26 22:35:23.247   838   911 I libPowerHal: [PE] MTKPOWER_HINT_APP_TOUCH update cmd:1408100, param:47, pr:3
+10-26 22:35:23.247   838   911 I libPowerHal: [PE] MTKPOWER_HINT_APP_TOUCH update cmd:1408300, param:100, pr:3
+10-26 22:35:23.247   838   911 I libPowerHal: [PE] MTKPOWER_HINT_APP_TOUCH update cmd:410000, param:1, pr:3
+10-26 22:35:23.248   838   911 I libPowerHal: hard user limit set cpu freq: 3000000 -1 -1 -1
+10-26 22:35:23.248   838   911 I libPowerHal: [PE] MTKPOWER_HINT_APP_TOUCH update cmd:408000 param:3000000 pr:3
+10-26 22:35:23.248   838   911 I libPowerHal: hard user limit set cpu freq: 3000000 -1 3000000 -1
+10-26 22:35:23.248   838   911 I libPowerHal: [PE] MTKPOWER_HINT_APP_TOUCH update cmd:408100 param:3000000 pr:3
+10-26 22:35:23.248   838   911 I libPowerHal: value: 1
+10-26 22:35:23.248   838   911 I libPowerHal: [PE] MTKPOWER_HINT_APP_TOUCH update cmd:410000 param:1 pr:3
+10-26 22:35:23.248   838   911 I libPowerHal: [setDvfsrcDevFreqOpp] opp:0, freq:3600000000
+10-26 22:35:23.249   838   911 I libPowerHal: [PE] MTKPOWER_HINT_APP_TOUCH update cmd:1000000 param:0 pr:3
+10-26 22:35:23.249   838   911 I libPowerHal: [recordCPUFreqInfo] set cluster[0] min(-1): -1 max(-1): -1 cluster[1] min(-1): -1 max(-1): -1
+10-26 22:35:23.249   838   911 I libPowerHal: [perfLockAcq] Done for hdl : 25746
+10-26 22:35:23.249   838   911 I libPowerHal: [perfLockRel] hdl:25745, idx:-1

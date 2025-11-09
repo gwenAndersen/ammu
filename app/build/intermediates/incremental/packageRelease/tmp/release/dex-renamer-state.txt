@@ -1,0 +1,10 @@
+#Sun Nov 09 08:15:47 GMT 2025
+base.0=/data/data/com.termux/files/home/my_project/ammu/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
+base.1=/data/data/com.termux/files/home/my_project/ammu/app/build/intermediates/dex/release/mergeDexRelease/classes2.dex
+base.2=/data/data/com.termux/files/home/my_project/ammu/app/build/intermediates/dex/release/mergeDexRelease/classes3.dex
+path.0=classes.dex
+path.1=classes2.dex
+path.2=classes3.dex
+renamed.0=classes.dex
+renamed.1=classes2.dex
+renamed.2=classes3.dex

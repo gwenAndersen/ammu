@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.12.1" type="conditional_incidents">
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; `SDK_INT` is always >= 21">
+        <fix-replace
+            description="Delete tools:targetApi"
+            replacement=""
+            priority="0">
+            <range
+                file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values-v31/themes.xml"
+                startOffset="233"
+                endOffset="252"/>
+        </fix-replace>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values-v31/themes.xml"
+            line="5"
+            column="45"
+            startOffset="233"
+            endLine="5"
+            endColumn="64"
+            endOffset="252"/>
+        <map>
+            <condition minGE="21-∞"/>
+        </map>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; `SDK_INT` is always >= 27">
+        <fix-replace
+            description="Delete tools:targetApi"
+            replacement=""
+            priority="0">
+            <range
+                file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values-v31/themes.xml"
+                startOffset="425"
+                endOffset="445"/>
+        </fix-replace>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values-v31/themes.xml"
+            line="7"
+            column="55"
+            startOffset="425"
+            endLine="7"
+            endColumn="75"
+            endOffset="445"/>
+        <map>
+            <condition minGE="27-∞"/>
+        </map>
+    </incident>
+
+</incidents>

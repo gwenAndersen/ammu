@@ -1,0 +1,270 @@
+/data/data/com.termux/files/home/my_project/ammu/app/build.gradle:15: Warning: Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details. [OldTargetApi]
+        targetSdk 34
+        ~~~~~~~~~~~~
+
+   Explanation for issues of type "OldTargetApi":
+   When your application or sdk runs on a version of Android that is more
+   recent than your targetSdkVersion specifies that it has been tested with,
+   various compatibility modes kick in. This ensures that your application
+   continues to work, but it may look out of place. For example, if the
+   targetSdkVersion is less than 14, your app may get an option button in the
+   UI.
+
+   To fix this issue, set the targetSdkVersion to the highest available value.
+   Then test your app to make sure everything works correctly. You may want to
+   consult the compatibility notes to see what changes apply to each version
+   you are adding support for:
+   https://developer.android.com/reference/android/os/Build.VERSION_CODES.html
+   as well as follow this guide:
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.
+   html
+
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.html
+
+/data/data/com.termux/files/home/my_project/ammu/app/src/main/AndroidManifest.xml:30: Warning: Redundant label can be removed [RedundantLabel]
+            android:label="@string/app_name" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "RedundantLabel":
+   When an activity does not have a label attribute, it will use the one from
+   the application tag. Since the application has already specified the same
+   label, the label on this activity can be omitted.
+
+/data/data/com.termux/files/home/my_project/ammu/gradle/wrapper/gradle-wrapper.properties:3: Warning: A newer version of Gradle than 8.13 is available: 8.14.3 [AndroidGradlePluginVersion]
+distributionUrl=https\://services.gradle.org/distributions/gradle-8.13-bin.zip
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "AndroidGradlePluginVersion":
+   This detector looks for usage of the Android Gradle Plugin where the
+   version you are using is not the current stable release. Using older
+   versions is fine, and there are cases where you deliberately want to stick
+   with an older version. However, you may simply not be aware that a more
+   recent version is available, and that is what this lint check helps find.
+
+/data/data/com.termux/files/home/my_project/ammu/app/build.gradle:10: Warning: A newer version of compileSdkVersion than 34 is available: 36 [GradleDependency]
+    compileSdk 34
+    ~~~~~~~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/build.gradle:51: Warning: A newer version of androidx.core:core-ktx than 1.13.1 is available: 1.17.0 [GradleDependency]
+    implementation 'androidx.core:core-ktx:1.13.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/build.gradle:52: Warning: A newer version of androidx.activity:activity-compose than 1.9.0 is available: 1.11.0 [GradleDependency]
+    implementation 'androidx.activity:activity-compose:1.9.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/build.gradle:53: Warning: A newer version of androidx.compose:compose-bom than 2024.05.00 is available: 2025.11.00 [GradleDependency]
+        implementation platform('androidx.compose:compose-bom:2024.05.00')
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/build.gradle:59: Warning: A newer version of com.google.android.material:material than 1.12.0 is available: 1.13.0 [GradleDependency]
+    implementation 'com.google.android.material:material:1.12.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/build.gradle:60: Warning: A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.8.2 is available: 2.9.4 [GradleDependency]
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.8.2'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/build.gradle:61: Warning: A newer version of androidx.lifecycle:lifecycle-viewmodel-compose than 2.8.2 is available: 2.9.4 [GradleDependency]
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.8.2'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/build.gradle:62: Warning: A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.8.2 is available: 2.9.4 [GradleDependency]
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.2"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/build.gradle:63: Warning: A newer version of androidx.lifecycle:lifecycle-service than 2.8.2 is available: 2.9.4 [GradleDependency]
+    implementation "androidx.lifecycle:lifecycle-service:2.8.2"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/build.gradle:64: Warning: A newer version of androidx.savedstate:savedstate-ktx than 1.2.1 is available: 1.4.0 [GradleDependency]
+    implementation "androidx.savedstate:savedstate-ktx:1.2.1"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/build.gradle:67: Warning: A newer version of androidx.navigation:navigation-compose than 2.7.7 is available: 2.9.6 [GradleDependency]
+    implementation "androidx.navigation:navigation-compose:2.7.7"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/build.gradle:68: Warning: A newer version of com.google.ai.client.generativeai:generativeai than 0.5.0 is available: 0.9.0 [GradleDependency]
+    implementation "com.google.ai.client.generativeai:generativeai:0.5.0"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/build.gradle:72: Warning: A newer version of androidx.test.ext:junit than 1.1.5 is available: 1.3.0 [GradleDependency]
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/build.gradle:73: Warning: A newer version of androidx.test.espresso:espresso-core than 3.5.1 is available: 3.7.0 [GradleDependency]
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/build.gradle:74: Warning: A newer version of androidx.compose:compose-bom than 2023.08.00 is available: 2025.11.00 [GradleDependency]
+    androidTestImplementation platform('androidx.compose:compose-bom:2023.08.00')
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "GradleDependency":
+   This detector looks for usages of libraries where the version you are using
+   is not the current stable release. Using older versions is fine, and there
+   are cases where you deliberately want to stick with an older version.
+   However, you may simply not be aware that a more recent version is
+   available, and that is what this lint check helps find.
+
+/data/data/com.termux/files/home/my_project/ammu/app/build.gradle:5: Warning: A newer version of org.jetbrains.kotlin.plugin.serialization than 2.0.0 is available: 2.2.21 [NewerVersionAvailable]
+    id 'org.jetbrains.kotlin.plugin.serialization' version '2.0.0'
+                                                           ~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/build.gradle:66: Warning: A newer version of org.jetbrains.kotlinx:kotlinx-serialization-json than 1.6.0 is available: 1.9.0 [NewerVersionAvailable]
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/build.gradle:69: Warning: A newer version of com.squareup.okhttp3:okhttp than 4.12.0 is available: 5.3.0 [NewerVersionAvailable]
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/build.gradle:70: Warning: A newer version of com.facebook.android:facebook-android-sdk than [16,17) is available: 18.1.3 [NewerVersionAvailable]
+    implementation 'com.facebook.android:facebook-android-sdk:[16,17)'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/build.gradle:82: Warning: A newer version of com.google.accompanist:accompanist-webview than 0.34.0 is available: 0.36.0 [NewerVersionAvailable]
+    implementation "com.google.accompanist:accompanist-webview:0.34.0"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "NewerVersionAvailable":
+   This detector checks with a central repository to see if there are newer
+   versions available for the dependencies used by this project. This is
+   similar to the GradleDependency check, which checks for newer versions
+   available in the Android SDK tools and libraries, but this works with any
+   MavenCentral dependency, and connects to the library every time, which
+   makes it more flexible but also much slower.
+
+/data/data/com.termux/files/home/my_project/ammu/app/src/main/res/drawable-v26: Warning: This folder configuration (v26) is unnecessary; minSdkVersion is 26. Merge all the resources in this folder into drawable. [ObsoleteSdkInt]
+/data/data/com.termux/files/home/my_project/ammu/app/src/main/res/mipmap-anydpi-v26: Warning: This folder configuration (v26) is unnecessary; minSdkVersion is 26. Merge all the resources in this folder into mipmap-anydpi. [ObsoleteSdkInt]
+/data/data/com.termux/files/home/my_project/ammu/app/src/main/res/values-v31/themes.xml:5: Warning: Unnecessary; SDK_INT is always >= 21 [ObsoleteSdkInt]
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+                                            ~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "ObsoleteSdkInt":
+   This check flags version checks that are not necessary, because the
+   minSdkVersion (or surrounding known API level) is already at least as high
+   as the version checked for.
+
+   Similarly, it also looks for resources in -vNN folders, such as values-v14
+   where the version qualifier is less than or equal to the minSdkVersion,
+   where the contents should be merged into the best folder.
+
+/data/data/com.termux/files/home/my_project/ammu/app/src/main/res/values/colors.xml:3: Warning: The resource R.color.purple_200 appears to be unused [UnusedResources]
+    <color name="purple_200">#FFBB86FC</color>
+           ~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/src/main/res/values/colors.xml:4: Warning: The resource R.color.purple_700 appears to be unused [UnusedResources]
+    <color name="purple_700">#FF3700B3</color>
+           ~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/src/main/res/values/colors.xml:5: Warning: The resource R.color.teal_200 appears to be unused [UnusedResources]
+    <color name="teal_200">#FF03DAC5</color>
+           ~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/src/main/res/values/colors.xml:6: Warning: The resource R.color.black appears to be unused [UnusedResources]
+    <color name="black">#FF000000</color>
+           ~~~~~~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/src/main/res/values/colors.xml:7: Warning: The resource R.color.white appears to be unused [UnusedResources]
+    <color name="white">#FFFFFFFF</color>
+           ~~~~~~~~~~~~
+/data/data/com.termux/files/home/my_project/ammu/app/src/main/res/drawable-v26/ic_launcher_foreground.xml:2: Warning: The resource R.drawable.ic_launcher_foreground appears to be unused [UnusedResources]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+/data/data/com.termux/files/home/my_project/ammu/app/src/main/res/values/strings.xml:3: Warning: The resource R.string.accessibility_service_description appears to be unused [UnusedResources]
+    <string name="accessibility_service_description">Monitors WhatsApp notifications to forward messages to Telegram.</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedResources":
+   Unused resources make applications larger and slow down builds.
+
+
+   The unused resource check can ignore tests. If you want to include
+   resources that are only referenced from tests, consider packaging them in a
+   test source set instead.
+
+   You can include test sources in the unused resource check by setting the
+   system property lint.unused-resources.include-tests =true, and to exclude
+   them (usually for performance reasons), use
+   lint.unused-resources.exclude-tests =true.
+   ,
+
+   Available options:
+
+   **skip-libraries** (default is true):
+   Whether the unused resource check should skip reporting unused resources in libraries.
+
+   Many libraries will declare resources that are part of the library surface; other modules depending on the library will also reference the resources. To avoid reporting all these resources as unused (in the context of a library), the unused resource check normally skips reporting unused resources in libraries. Instead, run the unused resource check on the consuming app module (along with `checkDependencies=true`).
+
+   However, there are cases where you want to check that all the resources declared in a library are used; in that case, you can disable the skip option.
+
+   To configure this option, use a `lint.xml` file with an <option> like this:
+
+   ```xml
+   <lint>
+       <issue id="UnusedResources">
+           <option name="skip-libraries" value="true" />
+       </issue>
+   </lint>
+   ```
+
+/data/data/com.termux/files/home/my_project/ammu/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml:2: Warning: The application adaptive icon is missing a monochrome tag [MonochromeLauncherIcon]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+/data/data/com.termux/files/home/my_project/ammu/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml:2: Warning: The application adaptive roundIcon is missing a monochrome tag [MonochromeLauncherIcon]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+
+   Explanation for issues of type "MonochromeLauncherIcon":
+   If android:roundIcon and android:icon are both in your manifest, you must
+   either remove the reference to android:roundIcon if it is not needed; or,
+   supply the monochrome icon in the drawable defined by the android:roundIcon
+   and android:icon attribute.
+
+   For example, if android:roundIcon and android:icon are both in the
+   manifest, a launcher might choose to use android:roundIcon over
+   android:icon to display the adaptive app icon. Therefore, your themed
+   application iconwill not show if your monochrome attribute is not also
+   specified in android:roundIcon.
+
+/data/data/com.termux/files/home/my_project/ammu/app/src/main/java/com/ammu/social/utils/TokenManager.kt:39: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        getPrefs(context).edit()
+        ~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UseKtx":
+   The Android KTX libraries decorates the Android platform SDK as well as
+   various libraries with more convenient extension functions available from
+   Kotlin, allowing you to use default parameters, named parameters, and
+   more.
+
+   Available options:
+
+   **remove-defaults** (default is true):
+   Whether to skip arguments that match the defaults provided by the extension.
+
+   Extensions often provide default values for some of the parameters. For example:
+   ```kotlin
+   fun Path.readLines(charset: Charset = Charsets.UTF_8): List<String> { return Files.readAllLines(this, charset) }
+   ```
+   This lint check will by default automatically omit parameters that match the default, so if your code was calling
+
+   ```kotlin
+   Files.readAllLines(file, Charset.UTF_8)
+   ```
+   lint would replace this with
+   ```kotlin
+   file.readLines()
+   ```
+   rather than
+
+   ```kotlin
+   file.readLines(Charset.UTF_8
+   ```
+   You can turn this behavior off using this option.
+
+   To configure this option, use a `lint.xml` file with an <option> like this:
+
+   ```xml
+   <lint>
+       <issue id="UseKtx">
+           <option name="remove-defaults" value="true" />
+       </issue>
+   </lint>
+   ```
+
+   **require-present** (default is true):
+   Whether to only offer extensions already available.
+
+   This option lets you only have lint suggest extension replacements if those extensions are already available on the class path (in other words, you're already depending on the library containing the extension method.)
+
+   To configure this option, use a `lint.xml` file with an <option> like this:
+
+   ```xml
+   <lint>
+       <issue id="UseKtx">
+           <option name="require-present" value="true" />
+       </issue>
+   </lint>
+   ```
+
+0 errors, 36 warnings

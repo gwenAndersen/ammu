@@ -1,0 +1,29 @@
+<lint-module
+    format="1"
+    dir="/data/data/com.termux/files/home/my_project/ammu/app"
+    name=":app"
+    type="APP"
+    maven="ammu:app:unspecified"
+    agpVersion="8.12.1"
+    buildFolder="build"
+    bootClassPath="/data/data/com.termux/files/home/android/sdk/platforms/android-34/android.jar:/data/data/com.termux/files/home/android/sdk/build-tools/35.0.0/core-lambda-stubs.jar"
+    javaSourceLevel="1.8"
+    compileTarget="android-34"
+    neverShrinking="true">
+  <lintOptions
+      disable="MutableCollectionMutableState,AutoboxingStateCreation"
+      abortOnError="true"
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true">
+    <severities>
+      <severity
+        id="AutoboxingStateCreation"
+        severity="IGNORE" />
+      <severity
+        id="MutableCollectionMutableState"
+        severity="IGNORE" />
+    </severities>
+  </lintOptions>
+  <variant name="release"/>
+</lint-module>
