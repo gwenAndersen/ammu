@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -23,32 +24,36 @@ import org.json.JSONObject
 
 class InboxViewModel : ViewModel() {
 
-    // --- START: Hardcoded Credentials ---
-    private val GEMINI_API_KEY = "AIzaSyAjWWFl_pwlHD8sQQjav4maNuTQ2BmgdbQ"
-    // --- END: Hardcoded Credentials ---
+    private val GEMINI_API_KEY = BuildConfig.GEMINI_API_KEY
 
     // --- API URLs ---
     private val GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=$GEMINI_API_KEY"
 
     private val client = OkHttpClient.Builder()
-        .connectTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
-        .readTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
-        .writeTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
+        .connectTimeout(60, java.util.concurrent.TimeUnit.SECONDS)
+        .readTimeout(60, java.util.concurrent.TimeUnit.SECONDS)
+        .writeTimeout(60, java.util.concurrent.TimeUnit.SECONDS)
         .build()
-    val comments = mutableStateOf<List<ClassifiedComment>>(emptyList()) // This will now observe paginatedComments
+    
 
     private val _allAnalyzedComments = MutableStateFlow<List<ClassifiedComment>>(emptyList())
-    private val currentPage = mutableStateOf(0)
-    private val pageSize = 50
+    private val _allRawComments = MutableStateFlow<List<ClassifiedComment>>(emptyList())
+    private val _detailedErrorLogs = MutableStateFlow<Map<String, String>>(emptyMap())
+    val detailedErrorLogs: StateFlow<Map<String, String>> = _detailedErrorLogs.asStateFlow()
+    private val currentPage = MutableStateFlow(0)
+    private val pageSize = 20
 
     val paginatedComments: StateFlow<List<ClassifiedComment>> = combine(
+        _allRawComments,
         _allAnalyzedComments,
-        currentPage.asStateFlow() // Convert mutableStateOf to StateFlow
-    ) { allComments, page ->
+        currentPage.asStateFlow()
+    ) { allRawComments, allAnalyzedComments, page ->
         val startIndex = page * pageSize
-        val endIndex = (startIndex + pageSize).coerceAtMost(allComments.size)
-        if (startIndex < allComments.size) {
-            allComments.subList(startIndex, endIndex)
+        val endIndex = (startIndex + pageSize).coerceAtMost(allRawComments.size)
+        if (startIndex < allRawComments.size) {
+            allRawComments.subList(startIndex, endIndex).map { rawComment ->
+                allAnalyzedComments.find { it.id == rawComment.id } ?: rawComment.copy(priority = "Pending", reason = "Analyzing...")
+            }
         } else {
             emptyList()
         }
@@ -64,17 +69,26 @@ class InboxViewModel : ViewModel() {
             try {
                 val fbCommentsUrl = "https://graph.facebook.com/v18.0/$pageId/posts?fields=comments{message,from},message&access_token=$accessToken"
                 Log.d("InboxViewModel", "Facebook comments URL: $fbCommentsUrl")
+
+                val fetchApiStartTime = System.currentTimeMillis()
                 val facebookResponse = fetchFromApi(fbCommentsUrl)
+                val fetchApiEndTime = System.currentTimeMillis()
+                val fetchApiDuration = fetchApiEndTime - fetchApiStartTime
+                Log.d("InboxViewModel", "fetchFromApi for Facebook comments took ${fetchApiDuration}ms")
+
                 Log.d("InboxViewModel", "Facebook API raw response: ${facebookResponse?.take(500)}") // Log first 500 chars
                 if (facebookResponse != null) {
                     val rawComments = parseFacebookComments(facebookResponse)
                     Log.d("InboxViewModel", "Parsed raw comments count: ${rawComments.size}")
+                    rawComments.forEachIndexed { index, comment ->
+                        Log.d("InboxViewModel", "Raw Comment ${index + 1}: ID=${comment.id}, Text='${comment.text.take(50)}...'")
+                    }
                     if (rawComments.isNotEmpty()) {
-                        val analyzedComments = analyzeCommentsWithGeminiAPI(rawComments)
-                        _allAnalyzedComments.value = analyzedComments
-                        Log.d("InboxViewModel", "Analyzed comments count: ${analyzedComments.size}")
+                        _allRawComments.value = rawComments
+                        Log.d("InboxViewModel", "Populated _allRawComments with ${rawComments.size} comments.")
+                        analyzeCurrentPageComments() // Analyze the first page
                     } else {
-                        _allAnalyzedComments.value = emptyList()
+                        _allRawComments.value = emptyList()
                         Log.d("InboxViewModel", "No raw comments found from Facebook.")
                     }
                 } else {
@@ -88,10 +102,39 @@ class InboxViewModel : ViewModel() {
         }
     }
 
+    private fun analyzeCurrentPageComments() {
+        viewModelScope.launch {
+            val currentRawComments = _allRawComments.value.chunked(pageSize)[currentPage.value]
+            if (currentRawComments.isNotEmpty()) {
+                Log.d("InboxViewModel", "Analyzing comments for page ${currentPage.value + 1}...")
+                val analyzedComments = analyzeCommentsWithGeminiAPI(currentRawComments)
+
+                // Merge newly analyzed comments into _allAnalyzedComments
+                _allAnalyzedComments.value = _allAnalyzedComments.value.toMutableList().apply {
+                    analyzedComments.forEach { newComment ->
+                        val index = indexOfFirst { it.id == newComment.id }
+                        if (index != -1) {
+                            set(index, newComment)
+                        } else {
+                            add(newComment)
+                        }
+                    }
+                }
+                Log.d("InboxViewModel", "Finished analyzing comments for page ${currentPage.value + 1}.")
+            } else {
+                Log.d("InboxViewModel", "No raw comments to analyze for page ${currentPage.value + 1}.")
+            }
+        }
+    }
+
     private suspend fun fetchFromApi(url: String): String? = withContext(Dispatchers.IO) {
+        val startTime = System.currentTimeMillis()
         try {
             val request = Request.Builder().url(url).build()
             client.newCall(request).execute().use { response ->
+                val endTime = System.currentTimeMillis()
+                val duration = endTime - startTime
+                Log.d("InboxViewModel", "fetchFromApi call to $url took ${duration}ms")
                 if (!response.isSuccessful) {
                     val errorBody = response.body?.string()
                     Log.e("InboxViewModel", "API call to $url failed: ${response.code} - ${response.message} - $errorBody")
@@ -102,7 +145,9 @@ class InboxViewModel : ViewModel() {
                 responseBody
             }
         } catch (e: Exception) {
-            Log.e("InboxViewModel", "Exception during API call to $url: ${e.message}", e)
+            val endTime = System.currentTimeMillis()
+            val duration = endTime - startTime
+            Log.e("InboxViewModel", "Exception during API call to $url: ${e.message}, took ${duration}ms", e)
             null
         }
     }
@@ -142,127 +187,221 @@ class InboxViewModel : ViewModel() {
 
     private suspend fun analyzeCommentsWithGeminiAPI(rawComments: List<ClassifiedComment>): List<ClassifiedComment> = withContext(Dispatchers.IO) {
         Log.d("InboxViewModel", "analyzeCommentsWithGeminiAPI called with ${rawComments.size} comments.")
+        rawComments.forEachIndexed { index, comment ->
+            Log.d("InboxViewModel", "AI Input Comment ${index + 1}: ID=${comment.id}, Text='${comment.text.take(50)}...'")
+        }
         val analyzedComments = mutableListOf<ClassifiedComment>()
+        val BATCH_SIZE = 10 // Define batch size
 
         if (rawComments.isEmpty()) {
             return@withContext emptyList()
         }
 
-        // Construct a single prompt for all comments
-        val commentsForPrompt = rawComments.joinToString(separator = "\n---\n") {
-            "Comment ID: ${it.id}\nComment Text: ${it.text}"
-        }
+        rawComments.chunked(BATCH_SIZE).forEachIndexed { index, batch ->
+            Log.d("InboxViewModel", "Processing batch ${index + 1}/${rawComments.chunked(BATCH_SIZE).size} with ${batch.size} comments.")
+            // Construct a single prompt for the current batch of comments
+            val commentsForPrompt = batch.joinToString(separator = "---") { 
+                "Comment ID: ${it.id}\nComment Text: ${it.text}"
+            }
+            // Store the AI input prompt for each comment in the batch for debugging
+            batch.forEach { comment ->
+                _detailedErrorLogs.value = _detailedErrorLogs.value + (comment.id to "AI Input Prompt:\n${commentsForPrompt}")
+            }
 
-        val prompt = """
-            You are a professional social media manager for a busy brand. Your task is to analyze the following Facebook comments and classify each one based on urgency and content.
+            val prompt = """
+                You are a professional social media manager for a busy brand. Your task is to analyze the following Facebook comments and classify each one based on urgency and content.
 
-            For each comment provided below, return a JSON object with two fields:
-            1.  "id": The original Comment ID.
-            2.  "priority": "High", "Medium", or "Low" based on the urgency of the comment.
-            3.  "reason": A brief, one-sentence explanation for your classification.
+                For each comment provided below, return a JSON object with four fields:
+                1.  "id": The original Comment ID.
+                2.  "priority": "High", "Medium", or "Low" based on the urgency of the comment.
+                3.  "reason": A brief, one-sentence explanation for your classification.
+                4.  "reply": A short, friendly, and appropriate reply to the comment. For generic comments, you can use emojis.
 
-            Return a JSON array containing one such object for each comment.
+                Return a JSON array containing one such object for each comment.
 
-            --- Comments to Analyze ---
-            $commentsForPrompt
-            --- End of Comments ---
-            """
+                --- Comments to Analyze ---
+                $commentsForPrompt
+                --- End of Comments ---
+                """.trimIndent()
 
-        val geminiRequestBody = JSONObject().apply {
-            put("contents", JSONArray().apply {
-                put(JSONObject().apply {
-                    put("parts", JSONArray().apply {
-                        put(JSONObject().apply {
-                            put("text", prompt)
+            val geminiRequestBody = JSONObject().apply {
+                put("contents", JSONArray().apply {
+                    put(JSONObject().apply {
+                        put("parts", JSONArray().apply {
+                            put(JSONObject().apply {
+                                put("text", prompt)
+                            })
                         })
                     })
                 })
-            })
-        }.toString()
+            }.toString()
 
-        val request = Request.Builder()
-            .url(GEMINI_API_URL) // Use the direct Gemini API URL
-            .post(geminiRequestBody.toRequestBody("application/json".toMediaType()))
-            .build()
+            val request = Request.Builder()
+                .url(GEMINI_API_URL) // Use the direct Gemini API URL
+                .post(geminiRequestBody.toRequestBody("application/json".toMediaType()))
+                .build()
 
-        try {
-            client.newCall(request).execute().use { response ->
-                if (!response.isSuccessful) {
-                    val errorBody = response.body?.string()
-                    Log.e("InboxViewModel", "Gemini API call failed: ${response.code} - $errorBody")
-                    // Return original comments marked as error
-                    return@withContext rawComments.map { it.copy(priority = "Error", reason = "Gemini API error: ${response.code}") }
-                }
+            try {
+                client.newCall(request).execute().use { response ->
+                    Log.d("InboxViewModel", "Gemini API response for batch ${index + 1}: ${response.code}, successful: ${response.isSuccessful}")
+                    if (!response.isSuccessful) {
+                        val errorBody = response.body?.string()
+                        val detailedLog = "Gemini API call failed for batch ${index + 1}: ${response.code} - ${response.message} - $errorBody"
+                        Log.e("InboxViewModel", detailedLog)
+                        batch.forEach { _detailedErrorLogs.value = _detailedErrorLogs.value + (it.id to detailedLog) }
+                        analyzedComments.addAll(batch.map { it.copy(priority = "Error", reason = "Gemini API error: ${response.code}. See detailed logs.") })
+                        return@use // Continue to next batch
+                    }
 
-                val geminiData = JSONObject(response.body?.string())
-                val textContent = geminiData.optJSONArray("candidates")
-                    ?.optJSONObject(0)
-                    ?.optJSONObject("content")
-                    ?.optJSONArray("parts")
-                    ?.optJSONObject(0)
-                    ?.optString("text") ?: ""
+                    val responseBody = response.body?.string()
+                    Log.d("InboxViewModel", "Gemini API response body length for batch ${index + 1}: ${responseBody?.length ?: 0}")
+                    val geminiData = JSONObject(responseBody)
+                    val textContent = geminiData.optJSONArray("candidates")
+                        ?.optJSONObject(0)
+                        ?.optJSONObject("content")
+                        ?.optJSONArray("parts")
+                        ?.optJSONObject(0)
+                        ?.optString("text") as String? ?: ""
 
-                val cleanedJson = textContent.trim().removePrefix("```json\n").removeSuffix("\n```")
+                    val cleanedJson = textContent.trim().removePrefix("```json\n").removeSuffix("\n```")
+                    Log.d("InboxViewModel", "Cleaned JSON content length for batch ${index + 1}: ${cleanedJson.length}")
 
-                try {
-                    val classifiedCommentsArray = JSONArray(cleanedJson)
-                    val classifiedMap = mutableMapOf<String, ClassifiedComment>()
+                    try {
+                        val classifiedCommentsArray = JSONArray(cleanedJson)
+                        Log.d("InboxViewModel", "Received ${classifiedCommentsArray.length()} classified comments from Gemini for batch ${index + 1}.")
+                        val classifiedMap = mutableMapOf<String, ClassifiedComment>()
 
-                    for (i in 0 until classifiedCommentsArray.length()) {
-                        val classifiedCommentJson = classifiedCommentsArray.getJSONObject(i)
-                        val id = classifiedCommentJson.optString("id", "")
-                        val priority = classifiedCommentJson.optString("priority", "Low")
-                        val reason = classifiedCommentJson.optString("reason", "N/A")
+                        for (i in 0 until classifiedCommentsArray.length()) {
+                            val classifiedCommentJson = classifiedCommentsArray.getJSONObject(i)
+                            val id: String = classifiedCommentJson.optString("id", "")
+                            val priority: String = classifiedCommentJson.optString("priority", "Low")
+                            val reason: String = classifiedCommentJson.optString("reason", "N/A")
+                            val reply: String = classifiedCommentJson.optString("reply", "")
 
-                        // Find the original comment to copy its text and from fields
-                        val originalComment = rawComments.find { it.id == id }
-                        if (originalComment != null) {
-                            classifiedMap[id] = originalComment.copy(priority = priority, reason = reason)
-                        } else {
-                            Log.w("InboxViewModel", "Gemini returned classification for unknown comment ID: $id")
+                            val originalComment = batch.find { it.id == id }
+                            if (originalComment != null) {
+                                classifiedMap[id] = originalComment.copy(priority = priority, reason = reason, reply = reply)
+                            } else {
+                                Log.w("InboxViewModel", "Gemini returned classification for unknown comment ID: $id in batch ${index + 1}")
+                            }
                         }
-                    }
-                    // Ensure all original comments are represented, even if Gemini missed some
-                    return@withContext rawComments.map {
-                        classifiedMap[it.id] ?: it.copy(priority = "Error", reason = "Classification missing from AI")
-                    }
+                        analyzedComments.addAll(batch.map {
+                            classifiedMap[it.id] ?: it.copy(priority = "Error", reason = "Classification missing from AI in batch ${index + 1}")
+                        })
+                        Log.d("InboxViewModel", "Batch ${index + 1} processed. Total analyzed comments so far: ${analyzedComments.size}")
 
-                } catch (jsonParseError: JSONException) {
-                    Log.e("InboxViewModel", "Error parsing Gemini response JSON: ${jsonParseError.message}", jsonParseError)
-                    return@withContext rawComments.map { it.copy(priority = "Error", reason = "Failed to parse AI response.") }
+                    } catch (jsonParseError: JSONException) {
+                        val detailedLog = "Error parsing Gemini response JSON for batch ${index + 1}: ${jsonParseError.message}\n${Log.getStackTraceString(jsonParseError)}"
+                        Log.e("InboxViewModel", detailedLog, jsonParseError)
+                        batch.forEach { _detailedErrorLogs.value = _detailedErrorLogs.value + (it.id to detailedLog) }
+                        analyzedComments.addAll(batch.map { it.copy(priority = "Error", reason = "Failed to parse AI response. See detailed logs.") })
+                    }
                 }
+            } catch (e: Exception) {
+                val detailedLog = "Exception during Gemini API call for batch ${index + 1}: ${e.message}\n${Log.getStackTraceString(e)}"
+                Log.e("InboxViewModel", detailedLog, e)
+                batch.forEach { _detailedErrorLogs.value = _detailedErrorLogs.value + (it.id to detailedLog) }
+                analyzedComments.addAll(batch.map { it.copy(priority = "Error", reason = "Network or API error. See detailed logs.") })
             }
-        } catch (e: Exception) {
-            Log.e("InboxViewModel", "Exception during Gemini API call: ${e.message}", e)
-            return@withContext rawComments.map { it.copy(priority = "Error", reason = "Network or API error: ${e.message}") }
+        }
+        return@withContext analyzedComments
+    }
+
+    private val _testLogOutput = MutableStateFlow("")
+    val testLogOutput: StateFlow<String> = _testLogOutput.asStateFlow()
+
+    fun runTestAiCall() {
+        viewModelScope.launch {
+            _testLogOutput.value = "" // Clear previous log
+            _testLogOutput.value += "Starting AI test call...\n"
+            try {
+                val dummyComments = listOf(
+                    ClassifiedComment(id = "test_1", text = "This is a test comment about a product issue.", from = "User A"),
+                    ClassifiedComment(id = "test_2", text = "Great service, thank you!", from = "User B"),
+                    ClassifiedComment(id = "test_3", text = "Where is my order? It's late!", from = "User C")
+                )
+                _testLogOutput.value += "Dummy comments prepared: ${dummyComments.size}\n"
+
+                val analyzedComments = analyzeCommentsWithGeminiAPI(dummyComments)
+                _testLogOutput.value += "AI analysis completed. Results:\n"
+                analyzedComments.forEach {
+                    _testLogOutput.value += "  ID: ${it.id}, Priority: ${it.priority}, Reason: ${it.reason}, Reply: ${it.reply}\n"
+                }
+                _testLogOutput.value += "AI test call finished successfully.\n"
+            } catch (e: Exception) {
+                val errorMessage = "AI test call failed: ${e.message}\n"
+                _testLogOutput.value += errorMessage
+                Log.e("InboxViewModel", errorMessage, e)
+            }
         }
     }
 
+    suspend fun generateReply(comment: ClassifiedComment): String {
+        // This is a placeholder. In a real app, you'd call the AI again
+        // or have the initial prompt also generate a reply.
+        return "Thank you for your comment!"
+    }
+
     fun goToNextPage() {
-        val totalPages = (_allAnalyzedComments.value.size + pageSize - 1) / pageSize
+        val totalPages = (_allRawComments.value.size + pageSize - 1) / pageSize // Use _allRawComments for total pages
         if (currentPage.value < totalPages - 1) {
             currentPage.value++
+            analyzeCurrentPageComments() // Trigger analysis for the new page
+            analyzeCurrentPageComments()
         }
     }
 
     fun goToPreviousPage() {
         if (currentPage.value > 0) {
             currentPage.value--
+            analyzeCurrentPageComments() // Trigger analysis for the new page
         }
     }
 
     fun goToPage(page: Int) {
-        val totalPages = (_allAnalyzedComments.value.size + pageSize - 1) / pageSize
-        if (page >= 0 && page < totalPages) {
-            currentPage.value = page
-        } else if (page >= totalPages && totalPages > 0) { // Go to last page if requested page is too high
-            currentPage.value = totalPages - 1
-        } else if (page < 0 && totalPages > 0) { // Go to first page if requested page is too low
-            currentPage.value = 0
+        val totalPages = (_allRawComments.value.size + pageSize - 1) / pageSize // Use _allRawComments for total pages
+        val newPage = when {
+            page < 0 && totalPages > 0 -> 0 // Go to first page if requested page is too low
+            page >= totalPages && totalPages > 0 -> totalPages - 1 // Go to last page if requested page is too high
+            page >= 0 && page < totalPages -> page
+            else -> currentPage.value // Stay on current page if no valid change
+        }
+        if (newPage != currentPage.value) {
+            currentPage.value = newPage
+            analyzeCurrentPageComments() // Trigger analysis for the new page
         }
     }
 
     fun getCurrentPageNumber(): Int = currentPage.value + 1 // 1-based page number
-    fun getTotalPages(): Int = (_allAnalyAnalyzedComments.value.size + pageSize - 1) / pageSize
-    fun getTotalComments(): Int = _allAnalyzedComments.value.size
+    fun getTotalPages(): Int = (_allRawComments.value.size + pageSize - 1) / pageSize
+    fun getTotalComments(): Int = _allRawComments.value.size
+
+    fun sendReply(commentId: String, replyText: String, pageToken: String) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                try {
+                    val url = "https://graph.facebook.com/v18.0/$commentId/comments"
+                    val requestBody = JSONObject().apply {
+                        put("message", replyText)
+                        put("access_token", pageToken)
+                    }.toString()
+
+                    val request = Request.Builder()
+                        .url(url)
+                        .post(requestBody.toRequestBody("application/json".toMediaType()))
+                        .build()
+
+                    client.newCall(request).execute().use { response ->
+                        if (response.isSuccessful) {
+                            Log.d("InboxViewModel", "Successfully posted reply to comment $commentId. Response: ${response.body?.string()}")
+                        } else {
+                            Log.e("InboxViewModel", "Failed to post reply to comment $commentId. Response: ${response.body?.string()}")
+                        }
+                    }
+                } catch (e: Exception) {
+                    Log.e("InboxViewModel", "Exception while posting reply to comment $commentId: ${e.message}", e)
+                }
+            }
+        }
+    }
 }

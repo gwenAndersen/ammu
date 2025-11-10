@@ -13,11 +13,14 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Insights
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -195,6 +198,7 @@ fun MainScreen(callbackManager: CallbackManager, sharedViewModel: SharedViewMode
                 PageSelectionScreen(
                     navController = navController,
                     sharedViewModel = sharedViewModel,
+                    inboxViewModel = inboxViewModel,
                     onLoginClick = {
                         LoginManager.getInstance().setLoginBehavior(LoginBehavior.WEB_ONLY)
                         loginLauncher.launch(listOf("pages_read_engagement", "pages_show_list", "pages_manage_posts"))
@@ -223,8 +227,8 @@ fun InboxScreen(inboxViewModel: InboxViewModel, onLogout: () -> Unit) {
         }
     }
 
-    val comments by inboxViewModel.comments
-    if (comments.isEmpty()) {
+    val paginatedComments by inboxViewModel.paginatedComments.collectAsState()
+    if (paginatedComments.isEmpty()) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             CircularProgressIndicator()
             Text("Loading comments...", modifier = Modifier.padding(top = 60.dp))
@@ -233,11 +237,43 @@ fun InboxScreen(inboxViewModel: InboxViewModel, onLogout: () -> Unit) {
         Column {
              Button(onClick = onLogout) { Text("Logout") }
             LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 60.dp)
+                modifier = Modifier.weight(1f), // Make LazyColumn fill available space
+                contentPadding = PaddingValues(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 8.dp)
             ) {
-                items(comments) { comment ->
-                    CommentCard(comment)
+                items(paginatedComments) { comment ->
+                    val detailedErrorLogs by inboxViewModel.detailedErrorLogs.collectAsState()
+                    CommentCard(
+                        comment = comment,
+                        detailedErrorLogs = detailedErrorLogs,
+                        inboxViewModel = inboxViewModel,
+                        pageToken = pageToken
+                    )
+                }
+            }
+
+            // Pagination Controls
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                horizontalArrangement = Arrangement.SpaceAround,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Button(
+                    onClick = { inboxViewModel.goToPreviousPage() },
+                    enabled = inboxViewModel.getCurrentPageNumber() > 1
+                ) {
+                    Text("Previous")
+                }
+                Text(
+                    text = "Page ${inboxViewModel.getCurrentPageNumber()} of ${inboxViewModel.getTotalPages()}",
+                    style = MaterialTheme.typography.bodyMedium
+                )
+                Button(
+                    onClick = { inboxViewModel.goToNextPage() },
+                    enabled = inboxViewModel.getCurrentPageNumber() < inboxViewModel.getTotalPages()
+                ) {
+                    Text("Next")
                 }
             }
         }
@@ -245,7 +281,17 @@ fun InboxScreen(inboxViewModel: InboxViewModel, onLogout: () -> Unit) {
 }
 
 @Composable
-fun CommentCard(comment: ClassifiedComment) {
+fun CommentCard(
+    comment: ClassifiedComment,
+    detailedErrorLogs: Map<String, String>,
+    inboxViewModel: InboxViewModel,
+    pageToken: String?
+) {
+    val context = LocalContext.current
+    val clipboardManager = LocalClipboardManager.current
+    var showReplyBox by remember { mutableStateOf(false) }
+    var replyText by remember { mutableStateOf(comment.reply) }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -299,10 +345,64 @@ fun CommentCard(comment: ClassifiedComment) {
                         fontStyle = FontStyle.Italic
                     )
                 }
+                Spacer(modifier = Modifier.height(8.dp))
+                Button(onClick = {
+                    var debugInfo = """
+                        Comment ID: ${comment.id}
+                        Comment Text: ${comment.text}
+                        From: ${comment.from}
+                        Priority: ${comment.priority}
+                        AI Reason: ${comment.reason}
+                    """.trimIndent()
+
+                    val detailedError = detailedErrorLogs[comment.id]
+                    if (!detailedError.isNullOrEmpty()) {
+                        debugInfo += "\n\n--- Detailed Error Log ---\n$detailedError"
+                    }
+
+                    clipboardManager.setText(AnnotatedString(debugInfo))
+                    android.widget.Toast.makeText(context, "Debug info copied to clipboard!", android.widget.Toast.LENGTH_SHORT).show()
+                }) {
+                    Text("Copy Debug Info")
+                }
+            }
+            if (comment.reply.isNotEmpty()) {
+                Spacer(modifier = Modifier.height(8.dp))
+                Button(onClick = { showReplyBox = !showReplyBox }) {
+                    Text(if (showReplyBox) "Cancel" else "Reply")
+                }
+            }
+
+            if (showReplyBox) {
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = "Suggested Reply:",
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold
+                )
+                TextField(
+                    value = replyText,
+                    onValueChange = { replyText = it },
+                    modifier = Modifier.fillMaxWidth(),
+                    label = { Text("Edit reply...") }
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Button(onClick = {
+                    if (pageToken != null) {
+                        inboxViewModel.sendReply(comment.id, replyText, pageToken)
+                        android.widget.Toast.makeText(context, "Reply sent!", android.widget.Toast.LENGTH_SHORT).show()
+                    } else {
+                        android.widget.Toast.makeText(context, "Error: Page token not available.", android.widget.Toast.LENGTH_SHORT).show()
+                    }
+                    showReplyBox = false
+                }) {
+                    Text("Send")
+                }
             }
         }
     }
 }
+
 
 @Composable
 fun StrategyScreen() {
